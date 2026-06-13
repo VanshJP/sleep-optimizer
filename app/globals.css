@@ -135,7 +135,7 @@ body {
 /* ——— hero: a plain introduction, not a pitch ——— */
 .hero {
     text-align: center;
-    padding: 120px 28px 36px;
+    padding: 120px 28px 0;
 }
 .hero-inner {
     max-width: 680px;
@@ -164,7 +164,7 @@ body {
 /* the thermal curve still spans the whole horizon, just quieter */
 .hero .wave {
     width: 100vw;
-    margin: 34px calc(50% - 50vw) 0;
+    margin: -60px calc(50% - 50vw) 0;
     height: clamp(70px, 11vh, 110px);
     opacity: 0.5;
     pointer-events: none;
@@ -550,7 +550,9 @@ input[type="range"] {
     background: var(--border);
     border: 1px solid var(--faint);
     flex-shrink: 0;
-    transition: background 0.2s, border-color 0.2s;
+    transition:
+        background 0.2s,
+        border-color 0.2s;
 }
 .toggle-pill.on {
     background: var(--ice-deep);
@@ -575,7 +577,9 @@ input[type="range"] {
     height: 20px;
     border-radius: 50%;
     background: var(--dim);
-    transition: transform 0.2s, background 0.2s;
+    transition:
+        transform 0.2s,
+        background 0.2s;
     pointer-events: none;
 }
 .toggle-pill.on .toggle-thumb {
