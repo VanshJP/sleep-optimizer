@@ -1,0 +1,24 @@
+name: Web
+
+# Builds the Next.js app. Path filter means iOS-only changes never trigger a web
+# build (and Vercel, configured separately, ignores /ios via .vercelignore).
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "ios/**"
+  pull_request:
+    paths-ignore:
+      - "ios/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm run build

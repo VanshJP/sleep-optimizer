@@ -1,0 +1,41 @@
+name: iOS
+
+# Runs the SleepEngine unit tests and a simulator build of the app. Only fires
+# on iOS changes so it never cross-triggers with the web build.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ios/**"
+      - ".github/workflows/ios.yml"
+  pull_request:
+    paths:
+      - "ios/**"
+      - ".github/workflows/ios.yml"
+
+jobs:
+  build-test:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Run engine unit tests
+        working-directory: ios/SleepEngine
+        run: swift test
+
+      - name: Generate Xcode project
+        working-directory: ios
+        run: xcodegen generate
+
+      - name: Build app (simulator, unsigned)
+        working-directory: ios
+        run: |
+          xcodebuild \
+            -project SleepOptimizer.xcodeproj \
+            -scheme SleepOptimizer \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO \
+            build

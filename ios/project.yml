@@ -1,0 +1,37 @@
+# XcodeGen spec. Regenerate the project with: `cd ios && xcodegen generate`.
+# The .xcodeproj is derived from this file, so this YAML — not the generated
+# project — is the source of truth that lives in git.
+name: SleepOptimizer
+options:
+  bundleIdPrefix: com.sleepoptimizer
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+
+packages:
+  SleepEngine:
+    path: SleepEngine
+
+targets:
+  SleepOptimizer:
+    type: application
+    platform: iOS
+    sources:
+      - path: SleepOptimizer/Sources
+    dependencies:
+      - package: SleepEngine
+        product: SleepEngine
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sleepoptimizer.app
+        PRODUCT_NAME: SleepOptimizer
+        MARKETING_VERSION: "0.1"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "5.9"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_ENTITLEMENTS: SleepOptimizer/SleepOptimizer.entitlements
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_NSHealthShareUsageDescription: "Sleep Optimizer reads your sleep stages from Apple Health to tune tonight's bed-temperature schedule. Your data stays on your device."
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait"

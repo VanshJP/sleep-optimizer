@@ -1,0 +1,14 @@
+# The .xcodeproj is generated from project.yml by XcodeGen, so it's derived
+# output, not source. Run `xcodegen generate` after checkout. project.yml is the
+# source of truth that lives in git.
+*.xcodeproj
+
+# Swift Package Manager / xcodebuild build products.
+.build/
+.build-xcode/
+DerivedData/
+
+# Xcode user state.
+xcuserdata/
+*.xcuserstate
+.swiftpm/
